@@ -68,6 +68,20 @@ paths:
                 items:
                   type: object
 
+  /categories/all:
+    get:
+      tags: [ categories ]
+      summary: Categories information.
+
+      responses:
+        '200':
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
 
   /users/all:
     get:

@@ -8,6 +8,8 @@ import requests
 from flask import Blueprint, jsonify, request
 from pydantic import BaseModel, ValidationError
 
+from service.utils.locations import Location
+
 all_locations_info_link = "https://yourtrip.qbank.pro/public/data.php?type=all_objects"
 locations = Blueprint("locations", __name__)
 locations_filepath = pathlib.Path(__file__).parent.parent.joinpath("mocks").joinpath("locations.json")
@@ -20,33 +22,33 @@ class SearchConfig(BaseModel):
     tags: Optional[List[str]]
 
 
-class Provider():
-    id: int
-    name: str
-    price: int
-    date_available: List[str]
-    duration: str
-    rating: str
-
-    def __init__(self, **entries):
-        self.__dict__.update(entries)
-
-
-class Location:
-    id: int
-    name: str
-    alias: str
-    categories: List[str]
-    tags: List[str]
-    image_src: str
-    difficulty: int
-    extra_params: List[dict]
-    description: str
-    latlng: str
-    providers: List[Provider]
-
-    def __init__(self, **entries):
-        self.__dict__.update(entries)
+# class Provider:
+#     id: int
+#     name: str
+#     price: int
+#     date_available: List[str]
+#     duration: str
+#     rating: str
+#
+#     def __init__(self, **entries):
+#         self.__dict__.update(entries)
+#
+#
+# class Location:
+#     id: int
+#     name: str
+#     alias: str
+#     categories: List[str]
+#     tags: List[str]
+#     image_src: str
+#     difficulty: int
+#     extra_params: List[dict]
+#     description: str
+#     latlng: str
+#     providers: List[Provider]
+#
+#     def __init__(self, **entries):
+#         self.__dict__.update(entries)
 
 
 def get_locations_info() -> list:
