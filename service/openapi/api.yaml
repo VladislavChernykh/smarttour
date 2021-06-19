@@ -1,0 +1,49 @@
+openapi: 3.0.0
+
+info:
+  title: SmartTour Service API
+  description: API description.
+  version: 1.0.0
+
+servers:
+  - url: 'https://yourtrip.qbank.pro/api'
+    description: Common host.
+  - url: 'http://localhost:80/api'
+    description: Local-dev backend.
+
+paths:
+  /locations/all:
+    get:
+      tags: [ locations ]
+      summary: Location information.
+
+      responses:
+        '200':
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+
+  /hello/hey:
+    get:
+      tags: [ hello ]
+      summary: Say hello.
+      parameters:
+        - name: username
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "Steve"
+
+      responses:
+        '200':
+          description: Ok.
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Hello Steve!
