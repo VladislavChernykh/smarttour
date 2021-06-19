@@ -1,0 +1,77 @@
+[
+  {
+    "id": 1,
+    "name": "Rosa Peak",
+    "alias": "Роза Пик",
+    "categories": [
+      "mountains",
+      "active",
+      "hot"
+    ],
+    "tags": [
+      "Первый раз в городе, увидеть главное"
+    ],
+    "image_src": "image_url",
+    "difficulty": 2,
+    "extra_params": [
+      {
+        "height": 2320
+      }
+    ],
+    "description": "Роза Пик — вершина горного хребта Аибга, которая находится на высоте 2320 м. Это главная вершина горнолыжного комплекса Роза Хутор.",
+    "latlng": "43.624780, 40.310340",
+    "providers": [
+      {
+        "id": 1,
+        "name": "provider1",
+        "price": 3000,
+        "datetime_available": [
+          "2021-06-19 12:38:03.421119",
+          "2021-06-19 12:40:11.625466"
+        ],
+        "duration": "4",
+        "rating": "8"
+      },
+      {
+        "id": 2,
+        "name": "provider2",
+        "price": 3200,
+        "datetime_available": [
+          "2021-06-19 12:38:03.421119",
+          "2021-06-19 12:40:11.625466"
+        ],
+        "duration": "3",
+        "rating": "7"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Agursky waterfalls",
+    "alias": "Агурские водопады",
+    "categories": [
+      "nature",
+      "waterfalls"
+    ],
+    "tags": [
+      ""
+    ],
+    "image_src": "image_url",
+    "difficulty": 1,
+    "extra_params": [],
+    "description": "Агурские водопады — одна из природных достопримечательностей Сочинского национального парка. Они находятся в 13 км от центра Сочи на территории Хостинского района.",
+    "latlng": "43.559166895554526, 39.823794569267726",
+    "providers": [
+      {
+        "id": 1,
+        "name": "provider1",
+        "price": 1000,
+        "datetime_available": [
+          "2021-06-19 12:38:03.421119"
+        ],
+        "duration": "3",
+        "rating": "7"
+      }
+    ]
+  }
+]

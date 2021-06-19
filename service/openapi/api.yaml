@@ -27,6 +27,40 @@ paths:
                 items:
                   type: object
 
+  /locations/get_by_params:
+    post:
+      tags: [ locations ]
+      summary: Location filtration by parameters.
+      requestBody:
+        description: Filter parameters.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                budget:
+                  type: array
+                  items:
+                    type: integer
+                datetime:
+                  type: string
+
+            example:
+              budget: [2000, 3000]
+              datetime: "2021-06-19 12:40:11.625466"
+
+      responses:
+        '200':
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+
+
   /users/all:
     get:
       tags: [ users ]
