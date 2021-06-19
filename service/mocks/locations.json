@@ -25,9 +25,9 @@
         "id": 1,
         "name": "provider1",
         "price": 3000,
-        "datetime_available": [
-          "2021-06-19 12:38:03.421119",
-          "2021-06-19 12:40:11.625466"
+        "date_available": [
+          "2021-06-19",
+          "2021-06-19"
         ],
         "duration": "4",
         "rating": "8"
@@ -36,9 +36,9 @@
         "id": 2,
         "name": "provider2",
         "price": 3200,
-        "datetime_available": [
-          "2021-06-19 12:38:03.421119",
-          "2021-06-19 12:40:11.625466"
+        "date_available": [
+          "2021-06-19",
+          "2021-06-19"
         ],
         "duration": "3",
         "rating": "7"
@@ -66,8 +66,8 @@
         "id": 1,
         "name": "provider1",
         "price": 1000,
-        "datetime_available": [
-          "2021-06-19 12:38:03.421119"
+        "date_available": [
+          "2021-06-19"
         ],
         "duration": "3",
         "rating": "7"

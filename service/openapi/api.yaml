@@ -43,12 +43,20 @@ paths:
                   type: array
                   items:
                     type: integer
-                datetime:
+                date:
                   type: string
+                categories:
+                  type: array
+                  items:
+                    type: string
+                tags:
+                  type: array
+                  items:
+                    type: string
 
             example:
               budget: [2000, 3000]
-              datetime: "2021-06-19 12:40:11.625466"
+              date: "2021-06-19"
 
       responses:
         '200':
