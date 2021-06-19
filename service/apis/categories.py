@@ -1,8 +1,9 @@
 import logging
 from itertools import chain
-from google_trans_new import google_translator
+
 import requests
 from flask import Blueprint, jsonify
+from google_trans_new import google_translator
 
 all_locations_info_link = "https://yourtrip.qbank.pro/public/data.php?type=all_objects"
 categories = Blueprint("categories", __name__)
@@ -29,6 +30,12 @@ def get_all_categories():
     return jsonify(result)
 
 
-@categories.route("/{category}/tags", methods=["GET"])
-def get_all_tags_by_category():
-    return
+@categories.route("/<path:category>/tags", methods=["GET"])
+def get_all_tags_by_category(category):
+    locations_mock = get_categories_info()
+    related_tags = [location["tags"] for location in locations_mock if category in location["categories"]]
+    if related_tags:
+        tags = related_tags[0]
+    else:
+        tags = []
+    return jsonify(tags)

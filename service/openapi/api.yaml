@@ -83,6 +83,29 @@ paths:
                 items:
                   type: string
 
+  /categories/{category}/tags:
+    get:
+      tags: [ categories ]
+      summary: Categories information.
+      parameters:
+        - name: category
+          in: path
+          required: true
+          description: Category name (english)
+          schema:
+            type: string
+          example: "mountains"
+
+      responses:
+        '200':
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+
   /users/all:
     get:
       tags: [ users ]
