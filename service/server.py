@@ -2,6 +2,7 @@ from flask import Flask
 
 from service.apis.hello import hello
 from service.apis.locations import locations
+from service.apis.users import users
 
 
 api_prefix = "/api"
@@ -11,7 +12,7 @@ docs_path = f"{api_prefix}/{docs_folder}"
 app = Flask(__name__, static_folder=docs_folder, static_url_path=docs_path)
 
 blueprints_to_add = [
-    hello, locations
+    hello, locations, users
 ]
 for blueprint in blueprints_to_add:
     url_prefix = f"{api_prefix}/{blueprint.name}"

@@ -27,6 +27,21 @@ paths:
                 items:
                   type: object
 
+  /users/all:
+    get:
+      tags: [ users ]
+      summary: User information.
+
+      responses:
+        '200':
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+
   /hello/hey:
     get:
       tags: [ hello ]

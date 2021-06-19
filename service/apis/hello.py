@@ -5,5 +5,6 @@ hello = Blueprint("hello", __name__)
 
 @hello.route("/hey", methods=["GET"])
 def hello_user():
-    return "Hello Steve!"
-    # cfg = request.args
+    cfg = request.args
+    username = cfg["username"]
+    return f"Hello {username}!"
