@@ -22,7 +22,8 @@ def get_all_categories():
 
     translator = google_translator()
     result = [
-        {"label": str(translator.translate(category, lang_src='en', lang_tgt='ru')).strip(), "alias": category}
+        {"label": str(translator.translate(category, lang_src='en', lang_tgt='ru')).strip().capitalize(),
+         "alias": category}
         for category in unique_categories_en
     ]
     return jsonify(result)
