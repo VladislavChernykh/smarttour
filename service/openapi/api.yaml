@@ -101,7 +101,7 @@ paths:
   /categories/{category}/tags:
     get:
       tags: [ categories ]
-      summary: Categories information.
+      summary: All category tags.
       parameters:
         - name: category
           in: path
@@ -161,7 +161,7 @@ paths:
   /trips/pack/random:
     get:
       tags: [ trips ]
-      summary: Random pack a trip.
+      summary: Pack a random trip.
 
       responses:
         '200':
@@ -176,7 +176,7 @@ paths:
   /users/all:
     get:
       tags: [ users ]
-      summary: User information.
+      summary: Get all user's information.
 
       responses:
         '200':
