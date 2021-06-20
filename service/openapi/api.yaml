@@ -148,6 +148,11 @@ paths:
                   items:
                     type: string
 
+            example:
+              budget: [ 2000, 5000 ]
+              date: "2021-06-20"
+              categories: [ "mountains", "entertainments" ]
+
       responses:
         '200':
           description: Ok.

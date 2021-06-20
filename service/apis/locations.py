@@ -64,7 +64,6 @@ def _filter_location(location: dict, cfg: SearchConfig) -> Optional[dict]:
     loc = Location(**location)
 
     if cfg.categories:
-        # categories_check = any(x in loc.categories for x in cfg.categories)
         categories_check = set(loc.categories).intersection(set(cfg.categories))
         if not categories_check:
             return
