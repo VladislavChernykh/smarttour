@@ -1,6 +1,5 @@
 import logging
 import math
-import pathlib
 from datetime import timedelta, datetime
 from typing import List, Optional
 
@@ -8,11 +7,9 @@ import requests
 from flask import Blueprint, jsonify, request
 from pydantic import BaseModel, ValidationError
 
-from service.utils.locations import Location
+from service.utils.locations import Location, all_locations_info_link
 
-all_locations_info_link = "https://yourtrip.qbank.pro/public/data.php?type=all_objects"
 locations = Blueprint("locations", __name__)
-# locations_filepath = pathlib.Path(__file__).parent.parent.joinpath("mocks").joinpath("locations.json")
 logging.basicConfig(filename='std.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s', level="INFO")
 
 
