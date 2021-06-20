@@ -1,7 +1,7 @@
 import logging
 import math
 from datetime import timedelta, datetime
-from typing import List, Optional
+from typing import List, Optional, Tuple
 
 import requests
 from flask import Blueprint, jsonify, request
@@ -14,7 +14,7 @@ logging.basicConfig(filename='std.log', filemode='w', format='%(name)s - %(level
 
 
 class SearchConfig(BaseModel):
-    budget: Optional[List[int]] = [0, math.inf]
+    budget: Optional[Tuple[int, int]] = [0, math.inf]
     date: Optional[str]
     categories: Optional[List[str]]
     tags: Optional[List[str]]

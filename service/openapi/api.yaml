@@ -71,7 +71,7 @@ paths:
 
             example:
               budget: [2000, 3000]
-              date: "2021-06-19"
+              date: "2021-06-20"
 
       responses:
         '200':
