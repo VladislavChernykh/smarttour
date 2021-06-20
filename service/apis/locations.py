@@ -1,7 +1,7 @@
 import logging
-from datetime import date, timedelta, datetime
 import math
 import pathlib
+from datetime import timedelta, datetime
 from typing import List, Optional
 
 import requests
@@ -15,40 +15,12 @@ locations = Blueprint("locations", __name__)
 locations_filepath = pathlib.Path(__file__).parent.parent.joinpath("mocks").joinpath("locations.json")
 logging.basicConfig(filename='std.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s', level="INFO")
 
+
 class SearchConfig(BaseModel):
     budget: Optional[List[int]] = [0, math.inf]
     date: Optional[str]
     categories: Optional[List[str]]
     tags: Optional[List[str]]
-
-
-# class Provider:
-#     id: int
-#     name: str
-#     price: int
-#     date_available: List[str]
-#     duration: str
-#     rating: str
-#
-#     def __init__(self, **entries):
-#         self.__dict__.update(entries)
-#
-#
-# class Location:
-#     id: int
-#     name: str
-#     alias: str
-#     categories: List[str]
-#     tags: List[str]
-#     image_src: str
-#     difficulty: int
-#     extra_params: List[dict]
-#     description: str
-#     latlng: str
-#     providers: List[Provider]
-#
-#     def __init__(self, **entries):
-#         self.__dict__.update(entries)
 
 
 def get_locations_info() -> list:
@@ -57,7 +29,8 @@ def get_locations_info() -> list:
     # with open(locations_filepath, "r", encoding="utf-8") as reader:
     #     return json.loads(reader.read())
 
-def perdelta(start, times, delta):
+
+def _perdelta(start, times, delta):
     curr = start
     dates = []
     iteration = 0
@@ -66,6 +39,7 @@ def perdelta(start, times, delta):
         curr += delta
         iteration += 1
     return dates
+
 
 @locations.route("/all", methods=["GET"])
 def get_all_locations():
@@ -81,14 +55,17 @@ def get_locations_by_params():
     except ValidationError as error:
         return str(error), 500
 
-    locations_mock = get_locations_info()
-    # available_locations = [location for location in locations_mock if filter_location(location, cfg)]
-    available_locations = [filter_location(location, cfg) for location in locations_mock]
-    available_locations = list(filter(None, available_locations))
+    available_locations = filter_locations(cfg)
     return jsonify(available_locations)
 
 
-def filter_location(location: dict, cfg: SearchConfig) -> Optional[dict]:
+def filter_locations(cfg) -> List[dict]:
+    locations_mock = get_locations_info()
+    available_locations = [_filter_location(location, cfg) for location in locations_mock]
+    return list(filter(None, available_locations))
+
+
+def _filter_location(location: dict, cfg: SearchConfig) -> Optional[dict]:
     loc = Location(**location)
 
     if cfg.categories:
@@ -116,7 +93,7 @@ def filter_location(location: dict, cfg: SearchConfig) -> Optional[dict]:
             start_date = pdate["start_date"]
             start_date = datetime.strptime(start_date, "%Y-%m-%d")
             recurring = pdate["recurring"]
-            available_dates = [fdate for fdate in perdelta(start_date, 100, timedelta(days=recurring))]
+            available_dates = [fdate for fdate in _perdelta(start_date, 100, timedelta(days=recurring))]
             if request_date not in available_dates:
                 return
     return loc.__dict__

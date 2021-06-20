@@ -34,8 +34,10 @@ def get_all_categories():
 def get_all_tags_by_category(category):
     locations_mock = get_categories_info()
     related_tags = [location["tags"] for location in locations_mock if category in location["categories"]]
-    if related_tags:
-        tags = related_tags[0]
-    else:
-        tags = []
-    return jsonify(tags)
+    tags = related_tags[0] if related_tags else []
+    translator = google_translator()
+    result = [
+        {"label": str(translator.translate(tag.replace("_", " "), lang_src='en', lang_tgt='ru')).strip().capitalize(),
+         "alias": tag} for tag in tags
+    ]
+    return jsonify(result)
