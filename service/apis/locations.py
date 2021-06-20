@@ -12,7 +12,7 @@ from service.utils.locations import Location
 
 all_locations_info_link = "https://yourtrip.qbank.pro/public/data.php?type=all_objects"
 locations = Blueprint("locations", __name__)
-locations_filepath = pathlib.Path(__file__).parent.parent.joinpath("mocks").joinpath("locations.json")
+# locations_filepath = pathlib.Path(__file__).parent.parent.joinpath("mocks").joinpath("locations.json")
 logging.basicConfig(filename='std.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s', level="INFO")
 
 
@@ -26,8 +26,6 @@ class SearchConfig(BaseModel):
 def get_locations_info() -> list:
     info = requests.get(all_locations_info_link)
     return info.json()
-    # with open(locations_filepath, "r", encoding="utf-8") as reader:
-    #     return json.loads(reader.read())
 
 
 def _perdelta(start, times, delta):
@@ -97,3 +95,12 @@ def _filter_location(location: dict, cfg: SearchConfig) -> Optional[dict]:
             if request_date not in available_dates:
                 return
     return loc.__dict__
+
+
+@locations.route("/cities", methods=["GET"])
+def get_all_cities():
+    locations_mock = get_locations_info()
+    available_locations = [location["location"]["address"] for location in locations_mock]
+    city_list = list(filter(lambda city: city != "null", available_locations))
+    unique_cities = {city.split(",", 1)[0] for city in city_list}
+    return jsonify(list(unique_cities))
